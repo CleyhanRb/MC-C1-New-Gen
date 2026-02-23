@@ -28,8 +28,8 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
-      - ./server-image/plugins-server:/plugins:ro
-      - ./server-image/config-server:/data:ro
+      - ./server-image/plugins-server:/plugins
+      - ./server-image/config-server:/data
   proxy:
     hostname: proxy
     build:
@@ -47,8 +47,8 @@ services:
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
       - proxy-data:/server
-      - ./proxy-image/config-bungee:/server:ro
-      - ./proxy-image/plugins-bungee:/plugins:ro
+      - ./proxy-image/config-bungee:/server
+      - ./proxy-image/plugins-bungee:/plugins
 
 volumes:
   survival-data:
