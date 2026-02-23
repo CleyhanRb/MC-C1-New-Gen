@@ -12,7 +12,9 @@ services:
       ONLINE_MODE: "FALSE"
       TYPE: "SPIGOT"
     volumes:
-      - survival-data:/data
+      - survival-data:/data # Volume
+      - ./server-image/plugins-server:/plugins:ro
+      - ./server-image/config-server:/data:ro
   creative:
     build:
       context: ./server-image
@@ -26,6 +28,8 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
+      - ./server-image/plugins-server:/plugins:ro
+      - ./server-image/config-server:/data:ro
   proxy:
     hostname: proxy
     build:
@@ -43,6 +47,8 @@ services:
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
       - proxy-data:/server
+      - ./proxy-image/config-bungee:/server:ro
+      - ./proxy-image/plugins-bungee:/plugins:ro
 
 volumes:
   survival-data:
