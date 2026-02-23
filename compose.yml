@@ -26,7 +26,6 @@ services:
       - creative-data:/data
       - ./config-server/spigot.yml:/data/spigot.yml
   proxy:
-    container_name: mc-proxy
     hostname: proxy
     image: itzg/mc-proxy
     networks:
