@@ -13,8 +13,8 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - survival-data:/data # Volume
-      - ./server-image/plugins-server:/plugins:ro
-      - ./server-image/config-server:/data:ro
+      - ./server-image/plugins-server:/plugins
+      - ./server-image/config-server:/data
   creative:
     build:
       context: ./server-image
