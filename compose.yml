@@ -53,4 +53,4 @@ volumes:
 
 networks:
   mc-network:
-    driver: overlay
+    driver: bridge
