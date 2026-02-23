@@ -1,7 +1,9 @@
 version: "3"
 services:
   survival:
-    image: itzg/minecraft-server
+    build:
+      context: ./server-image
+      dockerfile: Dockerfile
     hostname: survival
     networks:
       - mc-network
@@ -11,10 +13,10 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - survival-data:/data
-      - ./plugins-server:/plugins:ro
-      - ./config-server/spigot.yml:/data/spigot.yml
   creative:
-    image: itzg/minecraft-server
+    build:
+      context: ./server-image
+      dockerfile: Dockerfile
     hostname: creative
     networks:
       - mc-network
@@ -24,10 +26,11 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
-      - ./config-server/spigot.yml:/data/spigot.yml
   proxy:
     hostname: proxy
-    image: itzg/mc-proxy
+    build:
+      context: ./proxy-image
+      dockerfile: Dockerfile
     networks:
       - mc-network
     environment:
@@ -39,15 +42,12 @@ services:
       RCON_HOST: "localhost"
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
-      - ./config.yml:/config/config.yml
       - proxy-data:/server
-      - ./plugins-bungee:/plugins:ro
 
 volumes:
   survival-data:
   creative-data:
   proxy-data:
-  plugins-data:
 
 networks:
   mc-network:
