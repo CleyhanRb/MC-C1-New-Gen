@@ -1,15 +1,5 @@
 version: "3"
 services:
-  lobby:
-    image: itzg/minecraft-server
-    hostname: lobby
-    networks:
-      - mc-network
-    environment:
-      EULA: "TRUE"
-      ONLINE_MODE: "FALSE"
-    volumes:
-      - lobby-data:/data
   survival:
     image: itzg/minecraft-server
     hostname: survival
@@ -18,8 +8,11 @@ services:
     environment:
       EULA: "TRUE"
       ONLINE_MODE: "FALSE"
+      TYPE: "SPIGOT"
     volumes:
       - survival-data:/data
+      - ./plugins-server:/plugins:ro
+      - ./config-server/spigot.yml:/data/spigot.yml
   creative:
     image: itzg/minecraft-server
     hostname: creative
@@ -28,8 +21,10 @@ services:
     environment:
       EULA: "TRUE"
       ONLINE_MODE: "FALSE"
+      TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
+      - ./config-server/spigot.yml:/data/spigot.yml
   proxy:
     container_name: mc-proxy
     hostname: proxy
@@ -40,17 +35,22 @@ services:
       BUNGEE_JAR_REVISION: "1"
       CFG_MOTD: Powered by Docker
       REPLACE_ENV_VARIABLES: "true"
+      ENABLE_RCON: "true"
+      RCON_PORT: "25577"
+      RCON_HOST: "localhost"
+      RCON_PASSWORD: "RCON_PASSWORD"
     ports:
       - "25565:25577"
     volumes:
       - ./config.yml:/config/config.yml
       - proxy-data:/server
+      - ./plugins-bungee:/plugins:ro
 
 volumes:
-  lobby-data:
   survival-data:
   creative-data:
   proxy-data:
+  plugins-data:
 
 networks:
   mc-network:
