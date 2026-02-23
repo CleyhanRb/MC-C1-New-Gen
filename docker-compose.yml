@@ -2,7 +2,7 @@ version: "3"
 services:
   survival:
     build:
-      context: ./server-image
+      context: ./images/survival
       dockerfile: Dockerfile
     hostname: survival
     networks:
@@ -13,11 +13,11 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - survival-data:/data # Volume
-      - ./server-image/plugins-server:/plugins
-      - ./server-image/config-server:/data
+      - ./images/survival/spigot.yml:/data/spigot.yml
+      - ./images/survival/plugins:/plugins
   creative:
     build:
-      context: ./server-image
+      context: ./images/creative
       dockerfile: Dockerfile
     hostname: creative
     networks:
@@ -28,12 +28,12 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
-      - ./server-image/plugins-server:/plugins
-      - ./server-image/config-server:/data
+      - ./images/creative/spigot.yml:/data/spigot.yml
+      - ./images/creative/plugins:/plugins
   proxy:
     hostname: proxy
     build:
-      context: ./proxy-image
+      context: ./images/proxy
       dockerfile: Dockerfile
     networks:
       - mc-network
@@ -47,8 +47,8 @@ services:
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
       - proxy-data:/server
-      - ./proxy-image/config-bungee:/server
-      - ./proxy-image/plugins-bungee:/plugins
+      - ./images/proxy/plugins:/plugins
+      - ./images/proxy/config.yml:/server/config.yml
 
 volumes:
   survival-data:
