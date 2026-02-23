@@ -1,5 +1,5 @@
 FROM itzg/minecraft-server:latest
 
-COPY ./plugins /plugins
+COPY ./plugins-server /plugins
 COPY ./config-server/* /data
 
