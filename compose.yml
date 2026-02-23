@@ -1,0 +1,57 @@
+version: "3"
+services:
+  lobby:
+    image: itzg/minecraft-server
+    hostname: lobby
+    networks:
+      - mc-network
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+    volumes:
+      - lobby-data:/data
+  survival:
+    image: itzg/minecraft-server
+    hostname: survival
+    networks:
+      - mc-network
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+    volumes:
+      - survival-data:/data
+  creative:
+    image: itzg/minecraft-server
+    hostname: creative
+    networks:
+      - mc-network
+    environment:
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+    volumes:
+      - creative-data:/data
+  proxy:
+    container_name: mc-proxy
+    hostname: proxy
+    image: itzg/mc-proxy
+    networks:
+      - mc-network
+    environment:
+      BUNGEE_JAR_REVISION: "1"
+      CFG_MOTD: Powered by Docker
+      REPLACE_ENV_VARIABLES: "true"
+    ports:
+      - "25565:25577"
+    volumes:
+      - ./config.yml:/config/config.yml
+      - proxy-data:/server
+
+volumes:
+  lobby-data:
+  survival-data:
+  creative-data:
+  proxy-data:
+
+networks:
+  mc-network:
+    driver: bridge
