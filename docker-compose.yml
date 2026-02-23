@@ -38,8 +38,6 @@ services:
       RCON_PORT: "25577"
       RCON_HOST: "localhost"
       RCON_PASSWORD: "RCON_PASSWORD"
-    ports:
-      - "25565:25577"
     volumes:
       - ./config.yml:/config/config.yml
       - proxy-data:/server
