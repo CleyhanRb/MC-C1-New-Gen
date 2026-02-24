@@ -2,8 +2,10 @@ version: "3"
 services:
   survival:
     build:
-      context: ./images/survival
+      context: ./images/server-common
       dockerfile: Dockerfile
+      args:
+        - SERVER_BASE=images/survival-base
     hostname: survival
     networks:
       - mc-network
@@ -12,11 +14,13 @@ services:
       ONLINE_MODE: "FALSE"
       TYPE: "SPIGOT"
     volumes:
-      - survival-data:/data # Volume
+      - survival-data:/data
   creative:
     build:
-      context: ./images/creative
+      context: ./images/server-common
       dockerfile: Dockerfile
+      args:
+        - SERVER_BASE=images/creative-base
     hostname: creative
     networks:
       - mc-network
