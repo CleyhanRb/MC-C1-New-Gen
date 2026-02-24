@@ -42,7 +42,7 @@ services:
       CFG_MOTD: Powered by Docker
       REPLACE_ENV_VARIABLES: "true"
       ENABLE_RCON: "true"
-      RCON_PORT: "25577"
+      RCON_PORT: "25575"
       RCON_HOST: "localhost"
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
