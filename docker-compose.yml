@@ -13,8 +13,6 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - survival-data:/data # Volume
-      - ./images/survival/spigot.yml:/data/spigot.yml
-      - ./images/survival/plugins:/plugins
   creative:
     build:
       context: ./images/creative
@@ -28,8 +26,6 @@ services:
       TYPE: "SPIGOT"
     volumes:
       - creative-data:/data
-      - ./images/creative/spigot.yml:/data/spigot.yml
-      - ./images/creative/plugins:/plugins
   proxy:
     hostname: proxy
     build:
@@ -47,8 +43,6 @@ services:
       RCON_PASSWORD: "RCON_PASSWORD"
     volumes:
       - proxy-data:/server
-      - ./images/proxy/plugins:/plugins
-      - ./images/proxy/config.yml:/server/config.yml
 
 volumes:
   survival-data:

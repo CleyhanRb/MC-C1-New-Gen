@@ -1,5 +1,10 @@
 FROM itzg/minecraft-server:latest
 
-# COPY ./plugins-server /plugins
-# COPY ./config-server/* /data
+COPY ./server-base /tmp/
+
+COPY ../server-common/init.sh /init.sh
+RUN chmod +x /init.sh
+
+
+ENTRYPOINT ["/init.sh"]
 

@@ -1,4 +1,9 @@
 FROM itzg/mc-proxy:latest
 
-# COPY ./plugins-bungee /plugins
-# COPY ./config-bungee /server
+COPY ./bungee-base /tmp/
+
+COPY init.sh /init.sh
+RUN chmod +x /init.sh
+
+
+ENTRYPOINT ["/init.sh"]
