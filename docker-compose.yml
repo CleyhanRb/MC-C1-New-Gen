@@ -28,6 +28,9 @@ services:
       <<: [*server-common-vars, *db-vars]
     volumes:
       - survival-data:/data
+    requires:
+      - db
+      - proxy
   creative:
     build:
       context: ./images/server-common
@@ -42,6 +45,9 @@ services:
       <<: [*server-common-vars, *db-vars]
     volumes:
       - creative-data:/data
+    requires:
+      - db
+      - proxy
   proxy:
     hostname: proxy
     build:
@@ -61,6 +67,8 @@ services:
       <<: *db-vars
     volumes:
       - proxy-data:/server
+    requires:
+      - db
   db:
     image: mysql
     restart: always
