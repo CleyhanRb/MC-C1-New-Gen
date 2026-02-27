@@ -14,6 +14,15 @@ x-server-common-variables: &server-common-vars
   TZ: "Europe/Paris"
 
 services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - mc-network
   survival:
     build:
       context: ./images/server-common
@@ -69,15 +78,7 @@ services:
       - proxy-data:/server
     requires:
       - db
-  db:
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - mc-network
+  
 
 volumes:
   survival-data:
