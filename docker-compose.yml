@@ -24,7 +24,7 @@ services:
     networks:
       - mc-network
     environment:
-    LUCKPERMS_SERVER: survival
+      LUCKPERMS_SERVER: survival
       <<: [*server-common-vars, *db-vars]
     volumes:
       - survival-data:/data
@@ -38,7 +38,7 @@ services:
     networks:
       - mc-network
     environment:
-    LUCKPERMS_SERVER: creative
+      LUCKPERMS_SERVER: creative
       <<: [*server-common-vars, *db-vars]
     volumes:
       - creative-data:/data
