@@ -1,4 +1,18 @@
 version: "3"
+
+x-luckperms-db-vars: &db-vars
+  LUCKPERMS_ADDRESS: db
+  LUCKPERMS_DATABASE: mc
+  LUCKPERMS_USERNAME: ${DB_USER}
+  LUCKPERMS_PASSWORD: ${DB_PASSWORD}
+  LUCKPERMS_MESSAGING_SERVICE: bungee
+
+x-server-common-variables: &server-common-vars
+  EULA: "TRUE"
+  ONLINE_MODE: "FALSE"
+  TYPE: "SPIGOT"
+  TZ: "Europe/Paris"
+
 services:
   survival:
     build:
@@ -10,9 +24,8 @@ services:
     networks:
       - mc-network
     environment:
-      EULA: "TRUE"
-      ONLINE_MODE: "FALSE"
-      TYPE: "SPIGOT"
+    LUCKPERMS_SERVER: survival
+      <<: [*server-common-vars, *db-vars]
     volumes:
       - survival-data:/data
   creative:
@@ -25,9 +38,8 @@ services:
     networks:
       - mc-network
     environment:
-      EULA: "TRUE"
-      ONLINE_MODE: "FALSE"
-      TYPE: "SPIGOT"
+    LUCKPERMS_SERVER: creative
+      <<: [*server-common-vars, *db-vars]
     volumes:
       - creative-data:/data
   proxy:
@@ -45,13 +57,25 @@ services:
       RCON_PORT: "25575"
       RCON_HOST: "localhost"
       RCON_PASSWORD: "RCON_PASSWORD"
+      LUCKPERMS_SERVER: proxy
+      <<: *db-vars
     volumes:
       - proxy-data:/server
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - mc-network
 
 volumes:
   survival-data:
   creative-data:
   proxy-data:
+  db-data:
 
 networks:
   mc-network:
