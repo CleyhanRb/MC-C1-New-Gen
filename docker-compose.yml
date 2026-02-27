@@ -38,7 +38,6 @@ services:
     volumes:
       - survival-data:/data
     requires:
-      - db
       - proxy
   creative:
     build:
@@ -55,7 +54,6 @@ services:
     volumes:
       - creative-data:/data
     requires:
-      - db
       - proxy
   proxy:
     hostname: proxy
