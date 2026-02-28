@@ -78,6 +78,10 @@ services:
       - db-data:/var/lib/mysql
     networks:
       - mc-network
+  whodb:
+    image: clidey/whodb
+    ports:
+      - "8080:8080"
 
 volumes:
   survival-data:
