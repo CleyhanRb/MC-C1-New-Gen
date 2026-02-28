@@ -75,3 +75,4 @@ volumes:
 networks:
   mc-network:
     driver: bridge
+    external: true
