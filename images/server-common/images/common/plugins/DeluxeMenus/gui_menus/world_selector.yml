@@ -14,7 +14,8 @@
 #   - <command1>
 #   - <command2>
 #
-open_command: worldselector
+open_command: lobby
+register_command: true
 
 # Size
 #
