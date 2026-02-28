@@ -29,7 +29,6 @@ services:
     volumes:
       - survival-data:/data
     depends_on:
-      - db
       - proxy
   creative:
     build:
@@ -46,7 +45,6 @@ services:
     volumes:
       - creative-data:/data
     depends_on:
-      - db
       - proxy
   proxy:
     hostname: proxy
@@ -67,21 +65,6 @@ services:
       <<: *db-vars
     volumes:
       - proxy-data:/server
-    depends_on:
-      - db
-  db:
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - mc-network
-  whodb:
-    image: clidey/whodb
-    ports:
-      - "8080:8080"
 
 volumes:
   survival-data:
