@@ -89,7 +89,7 @@ teleport-safety: true
 
 # This forcefully disables teleport safety checks without a warning if attempting to teleport to unsafe locations.
 # Both 'teleport-safety' above and this option must be set to true to force teleportation to dangerous locations.
-force-disable-teleport-safety: false
+force-disable-teleport-safety: true
 
 # If a player is teleporting to an unsafe location in creative, adventure, or god mode, they will not be teleported to a
 # safe location. If you'd like players to be teleported to a safe location all of the time, set this option to true.
@@ -177,6 +177,8 @@ overridden-commands:
 # See https://breezewiki.com/bukkit/wiki/Commands.yml#aliases to map commands to other plugins.
 disabled-commands:
   - mail
+  - list
+  - vanish
   #- clear
 
 # Whether Essentials should show detailed command usages.
@@ -566,7 +568,7 @@ send-info-after-death: false
 # Should players with permissions be able to join and quit silently?
 # You can control this with 'essentials.silentjoin' and 'essentials.silentquit' permissions if it is enabled.
 # In addition, people with 'essentials.silentjoin.vanish' will be vanished upon joining.
-allow-silent-join-quit: false
+allow-silent-join-quit: true
 
 # You can set custom join and quit messages here. Set this to "none" to use the default Minecraft message,
 # or set this to "" to hide the message entirely.
@@ -579,8 +581,11 @@ allow-silent-join-quit: false
 # {ONLINE} - The number of players online.
 # {UNIQUE} - The number of unique players to join the server.
 # {UPTIME} - The amount of time the server has been online.
-custom-join-message: "&6[&2+&6] {PLAYER}"
-custom-quit-message: "&6[&4-&6] {PLAYER}"
+# custom-join-message: "&6[&2+&6] {PLAYER}"
+# custom-quit-message: "&6[&4-&6] {PLAYER}"
+
+custom-join-message: ""
+custom-quit-message: ""
 
 # You can set a custom join message for players who join with an updated username here.
 # This message will only be used if a player has joined before and has since changed their username.
@@ -1269,14 +1274,14 @@ respawn-listener-priority: high
 spawn-join-listener-priority: high
 
 # When players die, should they respawn at their first home or bed instead of the spawnpoint?
-respawn-at-home: false
+respawn-at-home: true
 
 # When players die, should they respawn at their bed instead of their first home or the spawnpoint?
 # The 'respawn-at-home' setting above must also be true for this to take effect.
 respawn-at-home-bed: true
 
 # When players die, should Essentials respect their respawn anchors?
-respawn-at-anchor: false
+respawn-at-anchor: true
 
 # If configured, players will spawn at a random location instead of their spawnpoint.
 # This will override the newbies spawnpoint set above.
