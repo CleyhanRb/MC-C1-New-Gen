@@ -28,8 +28,8 @@ services:
       <<: [*server-common-vars, *db-vars]
     volumes:
       - survival-data:/data
-    depends_on:
-      - proxy
+    # depends_on:
+    #   - proxy
   creative:
     build:
       context: ./images/server-common
@@ -44,8 +44,8 @@ services:
       <<: [*server-common-vars, *db-vars]
     volumes:
       - creative-data:/data
-    depends_on:
-      - proxy
+    # depends_on:
+    #   - proxy
   proxy:
     hostname: proxy
     build:

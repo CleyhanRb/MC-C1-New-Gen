@@ -568,7 +568,7 @@ send-info-after-death: false
 # Should players with permissions be able to join and quit silently?
 # You can control this with 'essentials.silentjoin' and 'essentials.silentquit' permissions if it is enabled.
 # In addition, people with 'essentials.silentjoin.vanish' will be vanished upon joining.
-allow-silent-join-quit: true
+allow-silent-join-quit: false
 
 # You can set custom join and quit messages here. Set this to "none" to use the default Minecraft message,
 # or set this to "" to hide the message entirely.
